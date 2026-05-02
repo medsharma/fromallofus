@@ -371,6 +371,7 @@ function OccasionCarousel() {
   const [transitionDir, setTransitionDir] = useState('next')
   const [transitionPhase, setTransitionPhase] = useState('idle')
   const total = CASES.length
+  const touchStartX = useRef(null)
 
   const animateTo = useCallback((direction, updater) => {
     if (transitionPhase !== 'idle') return
@@ -434,7 +435,16 @@ function OccasionCarousel() {
         </div>
       </div>
 
-      <div className={`occ__stage occ__stage--${transitionDir} occ__stage--${transitionPhase}`}>
+      <div
+        className={`occ__stage occ__stage--${transitionDir} occ__stage--${transitionPhase}`}
+        onTouchStart={e => { touchStartX.current = e.touches[0].clientX }}
+        onTouchEnd={e => {
+          if (touchStartX.current === null) return
+          const diff = touchStartX.current - e.changedTouches[0].clientX
+          if (Math.abs(diff) > 40) diff > 0 ? next() : prev()
+          touchStartX.current = null
+        }}
+      >
         <div className="occ__stage-bg" aria-hidden="true" />
 
         <button
