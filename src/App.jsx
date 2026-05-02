@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { gsap } from 'gsap'
 import './App.css'
 
+const CALENDLY = 'https://calendly.com/shivangolechha-icon/memorybook'
+
 /* ── Scroll Animations ──────────────────────────────── */
 function useScrollAnimations() {
   useEffect(() => {
@@ -129,7 +131,7 @@ function Nav() {
       </ul>
 
       <div className="nav__right">
-        <a href="#pricing" className="nav__cta">Start a Book</a>
+        <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="nav__cta">Start a Book</a>
         <button
           className={`nav__burger${menuOpen ? ' is-open' : ''}`}
           onClick={() => setMenuOpen(v => !v)}
@@ -158,7 +160,7 @@ function Nav() {
             <li key={href}><a href={href} onClick={close}>{label}</a></li>
           ))}
         </ul>
-        <a href="#pricing" className="btn btn--teal nav__drawer-cta" onClick={close}>
+        <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn--teal nav__drawer-cta" onClick={close}>
           Start a Book
         </a>
       </div>
@@ -176,7 +178,7 @@ function Hero() {
           The Most Memorable Group Gift Ever
         </h1>
         <div data-animate data-delay="2">
-          <a href="#pricing" className="btn btn--white-outline">Create Your Book</a>
+          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn--white-outline">Create Your Book</a>
         </div>
         <p className="hero__sub" data-animate data-delay="3">
           From $79 &nbsp;·&nbsp; Delivered in 96 hours &nbsp;·&nbsp; No app needed
@@ -476,7 +478,7 @@ function OccasionCarousel() {
               {c.heading}<br /><em>{c.headingEm}</em>
             </h3>
             <p className="occ__feature-body">{c.body}</p>
-            <a href="#pricing" className="btn btn--white-outline btn--sm">
+            <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn--white-outline btn--sm">
               Start This Gift
             </a>
             {c.caption && <p className="occ__feature-caption">{c.caption}</p>}
@@ -571,7 +573,9 @@ function Pricing() {
                 {t.features.map(f => <li key={f}>{f}</li>)}
               </ul>
               <a
-                href={t.name === 'Legacy' ? 'tel:9729032550' : '#'}
+                href={t.name === 'Legacy' ? 'tel:9729032550' : CALENDLY}
+                target={t.name === 'Legacy' ? undefined : '_blank'}
+                rel={t.name === 'Legacy' ? undefined : 'noopener noreferrer'}
                 className={`btn ${t.featured ? 'btn--teal' : 'btn--outline'}`}
                 aria-label={`Choose the ${t.name} plan`}
               >
@@ -782,7 +786,7 @@ function FounderStory() {
         </div>
         <p className="founder__caption" data-animate data-delay="2">The very first version, made completely by hand.</p>
         <div data-animate data-delay="3">
-          <a href="#pricing" className="btn btn--outline">Start Your Book</a>
+          <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn--outline">Start Your Book</a>
         </div>
       </div>
     </section>
@@ -800,7 +804,7 @@ function FinalCTA() {
         in <em>two minutes.</em>
       </h2>
       <div data-animate data-delay="2">
-        <a href="#pricing" className="btn btn--teal">Create Your Book from $79</a>
+        <a href={CALENDLY} target="_blank" rel="noopener noreferrer" className="btn btn--teal">Create Your Book from $79</a>
       </div>
       <p className="cta__small" data-animate data-delay="3">
         No app required &nbsp;·&nbsp; 96-hour guarantee &nbsp;·&nbsp; Human-designed &nbsp;·&nbsp; 4.9 / 5 stars
@@ -826,7 +830,7 @@ function Footer() {
           <a href="#process">How It Works</a>
           <a href="#book">The Book</a>
           <a href="#pricing">Pricing</a>
-          <a href="#pricing">Start a Book</a>
+          <a href={CALENDLY} target="_blank" rel="noopener noreferrer">Start a Book</a>
         </nav>
         <nav className="footer__col" aria-label="Occasions">
           <span className="footer__col-title">Occasions</span>
