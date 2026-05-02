@@ -1160,7 +1160,7 @@ body {
 .carousel3d-stage {
   position: relative;
   width: 100%;
-  height: 850px;
+  height: 720px;
   overflow: hidden;
   background: #000;
   transform-style: preserve-3d;
@@ -1172,7 +1172,7 @@ body {
   height: 400px;
   position: absolute;
   left: 50%;
-  top: 25%;
+  top: 30%;
   transform: translate(-50%, -50%);
 }
 .carousel3d-ring {
