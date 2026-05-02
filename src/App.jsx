@@ -611,7 +611,10 @@ function PhotoCarousel3D() {
       (100 - gsap.utils.wrap(0, 360, gsap.getProperty(ring, 'rotationY') - 180 - i * 36) / 360 * 500) + 'px 0px'
 
     const drag = (e) => {
-      if (e.touches) e.clientX = e.touches[0].clientX
+      if (e.touches) {
+        e.preventDefault()
+        e.clientX = e.touches[0].clientX
+      }
       gsap.to(ring, {
         rotationY: '-=' + ((Math.round(e.clientX) - xPos) % 360),
         onUpdate: () => { gsap.set(imgs, { backgroundPosition: (i) => getBgPos(i) }) }
@@ -621,7 +624,7 @@ function PhotoCarousel3D() {
 
     const dragEnd = () => {
       window.removeEventListener('mousemove', drag)
-      window.removeEventListener('touchmove', drag)
+      window.removeEventListener('touchmove', drag, { passive: false })
       gsap.set(ring, { cursor: 'grab' })
     }
 
@@ -630,7 +633,7 @@ function PhotoCarousel3D() {
       xPos = Math.round(e.clientX)
       gsap.set(ring, { cursor: 'grabbing' })
       window.addEventListener('mousemove', drag)
-      window.addEventListener('touchmove', drag)
+      window.addEventListener('touchmove', drag, { passive: false })
     }
 
     const tl = gsap.timeline()
