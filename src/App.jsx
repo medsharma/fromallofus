@@ -659,15 +659,15 @@ function PhotoCarousel3D() {
         })
       }, '-=0.5')
 
-    stage.addEventListener('mousedown', dragStart)
-    stage.addEventListener('touchstart', dragStart)
+    ring.addEventListener('mousedown', dragStart)
+    ring.addEventListener('touchstart', dragStart, { passive: false })
     window.addEventListener('mouseup', dragEnd)
     window.addEventListener('touchend', dragEnd)
 
     return () => {
       tl.kill()
-      stage.removeEventListener('mousedown', dragStart)
-      stage.removeEventListener('touchstart', dragStart)
+      ring.removeEventListener('mousedown', dragStart)
+      ring.removeEventListener('touchstart', dragStart)
       window.removeEventListener('mouseup', dragEnd)
       window.removeEventListener('touchend', dragEnd)
       window.removeEventListener('mousemove', drag)

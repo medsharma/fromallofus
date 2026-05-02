@@ -1166,7 +1166,6 @@ body {
   background: #000;
   transform-style: preserve-3d;
   user-select: none;
-  touch-action: none;
 }
 .carousel3d-container {
   perspective: 2000px;
@@ -1183,6 +1182,7 @@ body {
   position: absolute;
   transform-style: preserve-3d;
   user-select: none;
+  touch-action: none;
 }
 .carousel3d-img {
   position: absolute;
