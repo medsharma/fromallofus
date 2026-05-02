@@ -532,6 +532,7 @@ body {
   padding: 2rem 1.5rem;
   overflow: hidden;
   animation: occFade 0.4s var(--ease-out) both;
+  touch-action: pan-y;
 }
 .occ__stage--next .occ__feature {
   animation: occFeatureInNext 0.42s var(--ease-out) both;

@@ -439,12 +439,16 @@ function OccasionCarousel() {
 
       <div
         className={`occ__stage occ__stage--${transitionDir} occ__stage--${transitionPhase}`}
-        onTouchStart={e => { touchStartX.current = e.touches[0].clientX }}
+        onTouchStart={e => {
+          touchStartX.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+        }}
         onTouchEnd={e => {
           if (touchStartX.current === null) return
-          const diff = touchStartX.current - e.changedTouches[0].clientX
-          if (Math.abs(diff) > 40) diff > 0 ? next() : prev()
+          const dx = touchStartX.current.x - e.changedTouches[0].clientX
+          const dy = touchStartX.current.y - e.changedTouches[0].clientY
           touchStartX.current = null
+          if (Math.abs(dx) < 40 || Math.abs(dy) > Math.abs(dx)) return
+          dx > 0 ? next() : prev()
         }}
       >
         <div className="occ__stage-bg" aria-hidden="true" />
